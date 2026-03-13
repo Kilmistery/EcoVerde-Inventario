@@ -1,4 +1,6 @@
 import sqlite3
+from Clientes import mostrar_clientes
+import tkinter as tk
 
 conexion = sqlite3.connect("EcoVerdeDB.db")
 cursor = conexion.cursor()
@@ -16,10 +18,7 @@ conexion.close()
 
 print("Base de datos creada correctamente")
 
-
-import tkinter as tk
-
-#Crear Ventana principal
+# Crear ventana principal
 ventana = tk.Tk()
 ventana.title("Sistema EcoVerde - Inventario")
 ventana.geometry("400x400")
@@ -27,11 +26,10 @@ ventana.geometry("400x400")
 titulo = tk.Label(ventana, text="Sistema EcoVerde", font=("Times New Roman", 16))
 titulo.pack(pady=20)
 
-#Botones del sistema
 btn_productos = tk.Button(ventana, text="Productos", width=20)
 btn_productos.pack(pady=5)
 
-btn_clientes = tk.Button(ventana, text="Clientes", width=20)
+btn_clientes = tk.Button(ventana, text="Clientes", width=20, command=ventana_clientes)
 btn_clientes.pack(pady=5)
 
 btn_ventas = tk.Button(ventana, text="Ventas", width=20)
@@ -43,5 +41,4 @@ btn_consignacion.pack(pady=5)
 btn_excel = tk.Button(ventana, text="Exportar a Excel", width=20)
 btn_excel.pack(pady=5)
 
-#Iniciar programa
 ventana.mainloop()
