@@ -1,6 +1,7 @@
 import sqlite3
 import tkinter as tk
 from tkinter import messagebox
+from Clientes.mostrar_clientes import ventana_clientes
 
 # Crear base de datos
 conexion = sqlite3.connect("EcoVerdeDB.db")
