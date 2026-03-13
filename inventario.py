@@ -1,6 +1,9 @@
-import sqlite3
+
 import tkinter as tk
 from tkinter import messagebox
+from clientes.mostrar_clientes import ventana_clientes
+import sqlite3
+
 
 # Crear base de datos
 conexion = sqlite3.connect("EcoVerdeDB.db")
@@ -44,7 +47,6 @@ conexion.commit()
 conexion.close()
 
 print("Base de datos creada correctamente")
-
 
 # Crear ventana principal
 ventana = tk.Tk()
@@ -108,7 +110,7 @@ def abrir_productos():
 btn_productos = tk.Button(ventana, text="Productos", width=20, command=abrir_productos)
 btn_productos.pack(pady=5)
 
-btn_clientes = tk.Button(ventana, text="Clientes", width=20)
+btn_clientes = tk.Button(ventana, text="Clientes", width=20, command=ventana_clientes)
 btn_clientes.pack(pady=5)
 
 btn_ventas = tk.Button(ventana, text="Ventas", width=20)
