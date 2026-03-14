@@ -2,6 +2,7 @@
 import tkinter as tk
 from tkinter import messagebox
 from clientes.mostrar_clientes import ventana_clientes
+from productos.modulo_productos import ventana_productos
 import sqlite3
 
 
@@ -107,7 +108,7 @@ def abrir_productos():
 
 
 # BOTONES DEL SISTEMA
-btn_productos = tk.Button(ventana, text="Productos", width=20, command=abrir_productos)
+btn_productos = tk.Button(ventana, text="Productos", width=20, command=ventana_productos)
 btn_productos.pack(pady=5)
 
 btn_clientes = tk.Button(ventana, text="Clientes", width=20, command=ventana_clientes)
