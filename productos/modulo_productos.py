@@ -5,6 +5,7 @@ import sqlite3
 def ventana_productos():
 
     ventana = tk.Toplevel()
+    ventana.grab_set()
     ventana.title("Productos registrados")
     ventana.geometry("800x650")
 
@@ -39,10 +40,10 @@ def ventana_productos():
         cursor = conexion.cursor()
 
         cursor.execute("SELECT * FROM productos")
-        productos = cursor.fetchall()
+        producto = cursor.fetchall()
 
-        for productos in productos:
-            tabla.insert("", tk.END, values=productos)
+        for producto in producto:
+            tabla.insert("", tk.END, values=producto)
 
         conexion.close()
 
@@ -51,6 +52,7 @@ def ventana_productos():
     def nuevo_producto():
 
         ventana_nuevo = tk.Toplevel()
+        ventana_nuevo.grab_set()
         ventana_nuevo.title("Nuevo Producto")
         ventana_nuevo.geometry("300x200")
 
@@ -71,6 +73,16 @@ def ventana_productos():
             nombre = entry_nombre.get()
             precio = entry_Precio.get()
             stock = entry_Stock.get()
+            if not nombre or not precio or not stock:
+                messagebox.showerror("Error","Todos los campos deben ser obligatorios")
+                return
+
+            try:   
+                precio = float(precio)
+                stock = float(stock)
+            except:
+                messagebox.showerror("Error", "Precio y stock deben ser números")
+                return
 
             conexion = sqlite3.connect("EcoVerdeDB.db")
             cursor = conexion.cursor()
@@ -105,6 +117,7 @@ def ventana_productos():
         id_producto = datos[0]
 
         ventana_modificar = tk.Toplevel()
+        ventana_modificar.grab_set()
         ventana_modificar.title("Modificar Producto")
         ventana_modificar.geometry("300x200")
 
@@ -124,7 +137,7 @@ def ventana_productos():
         entry_stock.pack()
 
         def guardar_cambios():
-
+            
             nombre = entry_nombre.get()
             precio = entry_precio.get()
             stock = entry_stock.get()
@@ -134,7 +147,7 @@ def ventana_productos():
 
             cursor.execute(
                 "UPDATE productos SET nombre=?, precio=?, stock=? WHERE id=?",
-                (nombre, precio, stock)
+                (nombre, precio, stock, id_producto)
             )
 
             conexion.commit()
@@ -161,7 +174,7 @@ def ventana_productos():
 
         confirmar = messagebox.askyesno(
             "EcoVerde",
-            "¿Eliminar cliente seleccionado?"
+            "¿Eliminar producto seleccionado?"
         )
 
         if confirmar:
