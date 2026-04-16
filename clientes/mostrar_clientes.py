@@ -48,6 +48,7 @@ def ventana_clientes():
     def nuevo_cliente():
 
         ventana_nuevo = tk.Toplevel()
+        ventana_nuevo.grab_set()
         ventana_nuevo.title("Nuevo Cliente")
         ventana_nuevo.geometry("300x200")
 
@@ -63,7 +64,11 @@ def ventana_clientes():
 
             nombre = entry_nombre.get()
             telefono = entry_telefono.get()
-
+            
+            if not nombre or not telefono:
+                messagebox.showerror("Error", "Todos los campos son obligatorios")
+                return
+                
             conexion = sqlite3.connect("EcoVerdeDB.db")
             cursor = conexion.cursor()
 
@@ -97,6 +102,7 @@ def ventana_clientes():
         id_cliente = datos[0]
 
         ventana_modificar = tk.Toplevel()
+        ventana_modificar.grab_set()
         ventana_modificar.title("Modificar Cliente")
         ventana_modificar.geometry("300x200")
 
