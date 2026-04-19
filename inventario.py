@@ -4,6 +4,7 @@ from tkinter import messagebox
 from clientes.mostrar_clientes import ventana_clientes
 from productos.modulo_productos import ventana_productos
 from ventas.modulo_ventas import ventana_ventas
+from ventas.mostrar_ventas import ventana_mostrar_ventas
 import sqlite3
 
 
@@ -67,6 +68,9 @@ btn_clientes.pack(pady=5)
 
 btn_ventas = tk.Button(ventana, text="Ventas", width=20, command=ventana_ventas)
 btn_ventas.pack(pady=5)
+
+btn_ver_ventas = tk.Button(ventana, text="Ver Ventas", width=20, command=ventana_mostrar_ventas)
+btn_ver_ventas.pack(pady=5)
 
 btn_consignacion = tk.Button(ventana, text="Consignacion", width=20)
 btn_consignacion.pack(pady=5)
